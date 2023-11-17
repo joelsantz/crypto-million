@@ -8,6 +8,15 @@ import { CryptoCard } from '../CryptoCard';
 import styled from 'styled-components';
 import { CryptoSearch } from '../CryptoSearch';
 import { CryptoCurrency } from '../utils';
+import { GlobalCryptoStats } from '../GlobalCryptoStats';
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+`;
 
 const CryptoContainer = styled.div`
   display: flex;
@@ -15,6 +24,7 @@ const CryptoContainer = styled.div`
   justify-content: space-around;
   gap: 10px;
   padding: 10px;
+  width: 100%; 
 
   @media (max-width: 600px) {
     justify-content: center;
@@ -51,13 +61,14 @@ export const CryptoList = () => {
     }
 
     return (
-        <>
+        <MainContainer>
+        <GlobalCryptoStats />
         <CryptoSearch onSearch={(term) => handleSearch(term)} />
             <CryptoContainer>
                 {filteredCryptos.map(crypto => (
                     <CryptoCard key={crypto.id} crypto={crypto} />
                 ))}
             </CryptoContainer>
-        </>
+        </MainContainer>
     );
 }

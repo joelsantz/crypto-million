@@ -1,11 +1,7 @@
-import { CryptoCurrency } from '@/app/components/utils';
-
-
+import { CryptoCurrency, CryptoGlobalStats } from '@/app/components/utils';
 
 
 const BASE_URL = ' https://api.coinlore.net/api';
-
-
 
 export const getCryptos = async (): Promise<CryptoCurrency[]> => {
     try {
@@ -19,5 +15,19 @@ export const getCryptos = async (): Promise<CryptoCurrency[]> => {
     } catch (error) {
       console.error(error);
       return [];
+    }
+  };
+
+  export const getGlobalCryptoData = async (): Promise<CryptoGlobalStats> => {
+    try {
+      const response = await fetch(`${BASE_URL}/global/`);
+      if (!response.ok) {
+        throw new Error('Error al obtener datos globales de criptomonedas');
+      }
+      const result = await response.json();
+      return result[0];
+    } catch (error) {
+      console.error(error);
+      return {} as CryptoGlobalStats;
     }
   };
