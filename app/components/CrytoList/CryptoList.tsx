@@ -7,8 +7,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CryptoCard } from '../CryptoCard';
 import styled from 'styled-components';
 import { CryptoSearch } from '../CryptoSearch';
-import { CryptoCurrency } from '../utils';
+import { CryptoCurrency, ITEMS_PER_PAGE } from '../utils';
 import { GlobalCryptoStats } from '../GlobalCryptoStats';
+import { Pagination } from '../shared/Pagination';
 
 const MainContainer = styled.div`
   display: flex;
@@ -36,6 +37,15 @@ export const CryptoList = () => {
     const { cryptos, loading, error } = useSelector((state: RootState) => state.cryptos);
     const [filteredCryptos, setFilteredCryptos] = useState<CryptoCurrency[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(ITEMS_PER_PAGE);
+
+    const totalPages = Math.ceil(filteredCryptos.length / itemsPerPage);
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredCryptos.slice(indexOfFirstItem, indexOfLastItem);
+
+    const paginate = (pageNumber: React.SetStateAction<number>) => setCurrentPage(pageNumber);
 
     useEffect(() => {
         dispatch(getCryptos());
@@ -64,11 +74,12 @@ export const CryptoList = () => {
         <MainContainer>
         <GlobalCryptoStats />
         <CryptoSearch onSearch={(term) => handleSearch(term)} />
-            <CryptoContainer>
-                {filteredCryptos.map(crypto => (
-                    <CryptoCard key={crypto.id} crypto={crypto} />
-                ))}
-            </CryptoContainer>
+        <CryptoContainer>
+            {currentItems.map(crypto => (
+                <CryptoCard key={crypto.id} crypto={crypto} />
+             ))}
+        </CryptoContainer>
+        <Pagination totalPages={totalPages} currentPage={currentPage} paginate={paginate} />
         </MainContainer>
     );
 }

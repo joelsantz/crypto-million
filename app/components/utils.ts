@@ -12,3 +12,5 @@ export interface CryptoCurrency {
     total_mcap: number;
     total_volume: number;
   }
+
+  export const ITEMS_PER_PAGE = 24;
