@@ -47,8 +47,8 @@ export const GlobalCryptoStats = () => {
 
   console.log(data);
 
-  if (loading) return <div>Cargando datos globales...</div>;
-  if (error) return <div>Error al cargar datos globales</div>;
+  if (loading) return <div>Loading global info...</div>;
+  if (error) return <div>Error loading global info.</div>;
   
 
   return (

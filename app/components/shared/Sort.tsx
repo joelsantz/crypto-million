@@ -10,7 +10,6 @@ const SortByPriceContainer = styled.div`
   display: flex;
   align-self: flex-start;
   cursor: pointer;
-  // Añade aquí más estilos según sea necesario
 `;
 
 const SortText = styled.span`
