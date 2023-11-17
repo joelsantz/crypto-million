@@ -8,7 +8,6 @@ import { CryptoCard } from "../CryptoCard";
 import styled from "styled-components";
 import { CryptoSearch } from "../CryptoSearch";
 import { CryptoCurrency, ITEMS_PER_PAGE } from "../utils";
-import { GlobalCryptoStats } from "../GlobalCryptoStats";
 import { Pagination } from "../shared";
 import { SortByPrice } from "../shared";
 
@@ -102,7 +101,6 @@ export const CryptoList = () => {
 
   return (
     <MainContainer>
-      
       <CryptoSearch onSearch={(term) => handleSearch(term)} />
       <SortByPrice sortOrder={sortOrder} toggleSortOrder={toggleSortOrder} />
       <CryptoContainer>
