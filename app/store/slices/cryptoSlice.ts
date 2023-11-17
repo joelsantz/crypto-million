@@ -12,7 +12,7 @@ export const getCryptos = createAsyncThunk(
 );
 
 // initial state
-const initialState = {
+export const initialState = {
   cryptos: [] as CryptoCurrency[],
   loading: false,
   error: null as string | null | undefined,
