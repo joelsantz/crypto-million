@@ -13,12 +13,10 @@ const FooterText = styled.p`
   color: #666;
 `;
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <FooterContainer>
       <FooterText>Made by Joel Santana for Million and Up Technical Test</FooterText>
     </FooterContainer>
   );
 };
-
-export default Footer;

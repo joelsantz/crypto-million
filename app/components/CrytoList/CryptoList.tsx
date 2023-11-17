@@ -9,8 +9,8 @@ import styled from "styled-components";
 import { CryptoSearch } from "../CryptoSearch";
 import { CryptoCurrency, ITEMS_PER_PAGE } from "../utils";
 import { GlobalCryptoStats } from "../GlobalCryptoStats";
-import { Pagination } from "../shared/Pagination";
-import SortByPrice from "../shared/Sort";
+import { Pagination } from "../shared";
+import { SortByPrice } from "../shared";
 
 const MainContainer = styled.div`
   display: flex;

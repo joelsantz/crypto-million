@@ -20,7 +20,7 @@ const SortIcon = styled.span`
 
 `;
 
-const SortByPrice: React.FC<SortByPriceProps>  = ({ sortOrder, toggleSortOrder }) => {
+export const SortByPrice: React.FC<SortByPriceProps>  = ({ sortOrder, toggleSortOrder }) => {
   return (
     <SortByPriceContainer onClick={toggleSortOrder}>
       <SortText>Sort by price</SortText>
@@ -32,5 +32,3 @@ const SortByPrice: React.FC<SortByPriceProps>  = ({ sortOrder, toggleSortOrder }
     </SortByPriceContainer>
   );
 };
-
-export default SortByPrice;

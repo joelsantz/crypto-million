@@ -17,7 +17,7 @@ const NavLink = styled.a`
   }
 `;
 
-const NavBar = () => {
+export const NavBar = () => {
   return (
     <Nav>
       <NavLink href="https://www.coinlore.com/cryptocurrency-data-api" target="_blank">
@@ -29,5 +29,3 @@ const NavBar = () => {
     </Nav>
   );
 };
-
-export default NavBar;

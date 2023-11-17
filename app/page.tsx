@@ -3,8 +3,7 @@
 import { Provider } from "react-redux"
 import { CryptoList } from "./components/CrytoList"
 import { store } from "./store/store"
-import Footer from "./components/shared/Footer"
-import NavBar from "./components/shared/NavBar"
+import { Footer, NavBar } from "./components/shared"
 
 export default function App() {
   return (
