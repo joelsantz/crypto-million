@@ -10,10 +10,15 @@ const Nav = styled.nav`
 
 const NavLink = styled.a`
   text-decoration: none;
-  margin: 0 10px;
+  margin: 10px 30px;
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 10px 20px;
 
   &:hover {
-    text-decoration: underline;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
   }
 `;
 

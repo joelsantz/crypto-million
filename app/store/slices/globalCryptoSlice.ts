@@ -12,7 +12,6 @@ export const fetchGlobalCryptoData = createAsyncThunk(
   'globalCrypto/fetchGlobalData',
   async () => {
     const response = await getGlobalCryptoData();
-    console.log(response); 
     return response;
   }
 );

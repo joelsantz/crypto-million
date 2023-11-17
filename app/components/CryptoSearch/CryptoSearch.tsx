@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const SearchContainer = styled.div`
   display: flex;
   justify-content: left;
-  margin: 20px 0;
+  margin-top: 40px;
   
 `;
 
@@ -12,7 +12,10 @@ const SearchInput = styled.input`
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  width: 200px;
+  width: 400px;
+  font-size: 1.1em;
+  height: 20px;
+  color: #000;
 `;
 
 export interface CryptoSearchProps {

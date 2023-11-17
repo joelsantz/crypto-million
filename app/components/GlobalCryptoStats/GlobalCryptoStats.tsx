@@ -15,9 +15,9 @@ const CardsContainer = styled.div`
 `;
 
 const Card = styled.div`
-  border: 1px solid #ddd;
   border-radius: 8px;
-  padding-top: 10px;
+  padding: 10px 0;
+  padding-bottom: 10px;
   margin-top: 20px;
   flex-basis: calc(25% - 20px);
   text-align: center;
@@ -25,19 +25,26 @@ const Card = styled.div`
   @media (max-width: 768px) {
     flex-basis: calc(50% - 20px);
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-const Title = styled.h4`
+const Title = styled.h2`
   margin: 0;
-  color: #333;
+  font-size: 1.8em;
 `;
 
 const Value = styled.p`
-  color: #666;
-`;
-
-const MainTitle = styled.h2`
-  text-align: center;
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #9b9b9b;
+    &:hover {
+    color: #28d709;
+    transition: all 0.3s ease-in-out;
+  }
 `;
 
 export const GlobalCryptoStats = () => {
@@ -50,32 +57,29 @@ export const GlobalCryptoStats = () => {
     dispatch(fetchGlobalCryptoData());
   }, [dispatch]);
 
-  console.log(data);
-
   if (loading) return <div>Loading global info...</div>;
   if (error) return <div>Error loading global info.</div>;
   
 
   return (
     <>
-      <MainTitle>Global Crypto Information</MainTitle>
       <CardsContainer>
         {data && (
           <>
             <Card>
-              <Title>Total Coins</Title>
+              <Title>Total Coins  🪙</Title>
               <Value>{data.coins_count}</Value>
             </Card>
             <Card>
-              <Title>Active Markets</Title>
+              <Title>Active Markets  🛍️</Title>
               <Value>{data.active_markets}</Value>
             </Card>
             <Card>
-              <Title>Total Market Cap</Title>
+              <Title>Total Market Cap 💰</Title>
               <Value>${data.total_mcap}</Value>
             </Card>
             <Card>
-              <Title>Total Volume</Title>
+              <Title>Total Volume 📊</Title>
               <Value>${data.total_volume}</Value>
             </Card>
           </>

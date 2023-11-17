@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Bebas Neue';
+    src: url('./assets/fonts/BebasNeue-Regular.ttf');
+    font-weight: 400;
+  }
+
+body {
+    background-color: black;
+}
+
+h1, h2, h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: rgb(230, 221, 221);
+}
+
+a, p, li, span, input {
+    color: rgb(230, 221, 221);
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+}

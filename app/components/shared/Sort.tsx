@@ -10,24 +10,26 @@ const SortByPriceContainer = styled.div`
   display: flex;
   align-self: flex-start;
   cursor: pointer;
+  margin-left: 50px;
 `;
 
 const SortText = styled.span`
   margin-right: 5px;
+  font-weight: bold;
 `;
 
 const SortIcon = styled.span`
-
+  font-weight: regular;
 `;
 
 export const SortByPrice: React.FC<SortByPriceProps>  = ({ sortOrder, toggleSortOrder }) => {
   return (
     <SortByPriceContainer onClick={toggleSortOrder}>
-      <SortText>Sort by price</SortText>
+      <SortText>Sort by price USD:</SortText>
       {sortOrder === "highest" ? (
-        <SortIcon>📈</SortIcon>
+        <SortIcon>High ⬆️</SortIcon>
       ) : (
-        <SortIcon>📉</SortIcon>
+        <SortIcon>Low ⬇️</SortIcon>
       )}
     </SortByPriceContainer>
   );

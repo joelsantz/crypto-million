@@ -29,7 +29,7 @@ export const Pagination:React.FC<PaginationProps>  = ({ totalPages, currentPage,
     return (
         <PaginationContainer>
           <PageNavButton onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
-            «
+            <span>«</span>
           </PageNavButton>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
             <PageNumber key={number} onClick={() => paginate(number)}>
@@ -37,7 +37,7 @@ export const Pagination:React.FC<PaginationProps>  = ({ totalPages, currentPage,
             </PageNumber>
           ))}
           <PageNavButton onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>
-            »
+            <span>»</span>
           </PageNavButton>
         </PaginationContainer>
       );
