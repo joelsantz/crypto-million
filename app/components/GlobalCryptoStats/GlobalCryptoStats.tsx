@@ -10,6 +10,7 @@ const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
 `;
 
@@ -35,6 +36,10 @@ const Value = styled.p`
   color: #666;
 `;
 
+const MainTitle = styled.h2`
+  text-align: center;
+`;
+
 export const GlobalCryptoStats = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { data, loading, error } = useSelector(
@@ -53,7 +58,7 @@ export const GlobalCryptoStats = () => {
 
   return (
     <>
-      <h2>Global Crypto Information</h2>
+      <MainTitle>Global Crypto Information</MainTitle>
       <CardsContainer>
         {data && (
           <>

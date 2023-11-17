@@ -102,7 +102,7 @@ export const CryptoList = () => {
 
   return (
     <MainContainer>
-      <GlobalCryptoStats />
+      
       <CryptoSearch onSearch={(term) => handleSearch(term)} />
       <SortByPrice sortOrder={sortOrder} toggleSortOrder={toggleSortOrder} />
       <CryptoContainer>

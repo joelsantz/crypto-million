@@ -3,14 +3,14 @@
 import { Provider } from "react-redux"
 import { CryptoList } from "./components/CrytoList"
 import { store } from "./store/store"
-import { Footer, NavBar } from "./components/shared"
+import { MainLayout } from "./components"
 
 export default function App() {
   return (
-      <Provider store={store}>
-          <NavBar />
-          <CryptoList />
-          <Footer />
-      </Provider>
-  )
+    <Provider store={store}>
+      <MainLayout>
+        <CryptoList />
+      </MainLayout>
+    </Provider>
+  );
 }
