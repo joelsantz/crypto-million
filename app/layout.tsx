@@ -1,3 +1,5 @@
+import React from "react"
+
 export const metadata = {
   title: 'Crypto | Million and Up',
   favicon: '/favicon.ico'

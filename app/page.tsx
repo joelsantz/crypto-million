@@ -1,5 +1,6 @@
 'use client'
 
+import React from "react"
 import { Provider } from "react-redux"
 import { CryptoList } from "./components/CrytoList"
 import { store } from "./store/store"
