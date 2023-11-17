@@ -60,6 +60,7 @@ export const CryptoList = () => {
     
       const handleSearch = (term: string) => {
         setSearchTerm(term);
+        setCurrentPage(1);
       };
 
     if (loading) {
