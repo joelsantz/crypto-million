@@ -53,7 +53,7 @@ export const GlobalCryptoStats = () => {
 
   return (
     <>
-      <h2>Global Stats</h2>
+      <h2>Global Crypto Information</h2>
       <CardsContainer>
         {data && (
           <>

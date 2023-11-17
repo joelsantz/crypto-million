@@ -1,15 +1,16 @@
 "use client";
-import { getCryptos } from '@/app/store/slices/cryptoSlice';
-import { AppDispatch } from '@/app/store/store';
-import { RootState } from '@/app/store/utils';
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { CryptoCard } from '../CryptoCard';
-import styled from 'styled-components';
-import { CryptoSearch } from '../CryptoSearch';
-import { CryptoCurrency, ITEMS_PER_PAGE } from '../utils';
-import { GlobalCryptoStats } from '../GlobalCryptoStats';
-import { Pagination } from '../shared/Pagination';
+import { getCryptos } from "@/app/store/slices/cryptoSlice";
+import { AppDispatch } from "@/app/store/store";
+import { RootState } from "@/app/store/utils";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { CryptoCard } from "../CryptoCard";
+import styled from "styled-components";
+import { CryptoSearch } from "../CryptoSearch";
+import { CryptoCurrency, ITEMS_PER_PAGE } from "../utils";
+import { GlobalCryptoStats } from "../GlobalCryptoStats";
+import { Pagination } from "../shared/Pagination";
+import SortByPrice from "../shared/Sort";
 
 const MainContainer = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const CryptoContainer = styled.div`
   justify-content: space-around;
   gap: 10px;
   padding: 10px;
-  width: 100%; 
+  width: 100%;
 
   @media (max-width: 600px) {
     justify-content: center;
@@ -33,54 +34,87 @@ const CryptoContainer = styled.div`
 `;
 
 export const CryptoList = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const { cryptos, loading, error } = useSelector((state: RootState) => state.cryptos);
-    const [filteredCryptos, setFilteredCryptos] = useState<CryptoCurrency[]>([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(ITEMS_PER_PAGE);
+  const dispatch = useDispatch<AppDispatch>();
+  const { cryptos, loading, error } = useSelector(
+    (state: RootState) => state.cryptos
+  );
+  const [filteredCryptos, setFilteredCryptos] = useState<CryptoCurrency[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(ITEMS_PER_PAGE);
+  const [sortOrder, setSortOrder] = useState("");
 
-    const totalPages = Math.ceil(filteredCryptos.length / itemsPerPage);
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredCryptos.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredCryptos.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredCryptos.slice(indexOfFirstItem, indexOfLastItem);
 
-    const paginate = (pageNumber: React.SetStateAction<number>) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: React.SetStateAction<number>) =>
+    setCurrentPage(pageNumber);
 
-    useEffect(() => {
-        dispatch(getCryptos());
-    }, [dispatch]);
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === "highest" ? "lowest" : "highest");
+  };
 
-    useEffect(() => {
-        const filtered = cryptos.filter(crypto =>
-          crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setFilteredCryptos(filtered);
-      }, [cryptos, searchTerm]);
-    
-      const handleSearch = (term: string) => {
-        setSearchTerm(term);
-        setCurrentPage(1);
-      };
+  useEffect(() => {
+    dispatch(getCryptos());
+  }, [dispatch]);
 
-    if (loading) {
-        return <div>loading...</div>;
+  useEffect(() => {
+    let sortedCryptos = [...cryptos];
+
+    if (sortOrder === "highest") {
+      sortedCryptos.sort(
+        (a, b) => parseFloat(b.price_usd) - parseFloat(a.price_usd)
+      );
+    } else if (sortOrder === "lowest") {
+      sortedCryptos.sort(
+        (a, b) => parseFloat(a.price_usd) - parseFloat(b.price_usd)
+      );
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
-    return (
-        <MainContainer>
-        <GlobalCryptoStats />
-        <CryptoSearch onSearch={(term) => handleSearch(term)} />
-        <CryptoContainer>
-            {currentItems.map(crypto => (
-                <CryptoCard key={crypto.id} crypto={crypto} />
-             ))}
-        </CryptoContainer>
-        <Pagination totalPages={totalPages} currentPage={currentPage} paginate={paginate} />
-        </MainContainer>
+    const filtered = sortedCryptos.filter((crypto) =>
+      crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-}
+
+    setFilteredCryptos(filtered);
+  }, [cryptos, searchTerm, sortOrder]);
+
+  useEffect(() => {
+    const filtered = cryptos.filter((crypto) =>
+      crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCryptos(filtered);
+  }, [cryptos, searchTerm]);
+
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+    setCurrentPage(1);
+  };
+
+  if (loading) {
+    return <div>loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return (
+    <MainContainer>
+      <GlobalCryptoStats />
+      <CryptoSearch onSearch={(term) => handleSearch(term)} />
+      <SortByPrice sortOrder={sortOrder} toggleSortOrder={toggleSortOrder} />
+      <CryptoContainer>
+        {currentItems.map((crypto) => (
+          <CryptoCard key={crypto.id} crypto={crypto} />
+        ))}
+      </CryptoContainer>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
+    </MainContainer>
+  );
+};
