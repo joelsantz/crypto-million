@@ -2,16 +2,45 @@
 import { getCryptos } from '@/app/store/slices/cryptoSlice';
 import { AppDispatch } from '@/app/store/store';
 import { RootState } from '@/app/store/utils';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { CryptoCard } from '../CryptoCard';
+import styled from 'styled-components';
+import { CryptoSearch } from '../CryptoSearch';
+import { CryptoCurrency } from '../utils';
+
+const CryptoContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 10px;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
+`;
 
 export const CryptoList = () => {
     const dispatch = useDispatch<AppDispatch>();
     const { cryptos, loading, error } = useSelector((state: RootState) => state.cryptos);
+    const [filteredCryptos, setFilteredCryptos] = useState<CryptoCurrency[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         dispatch(getCryptos());
     }, [dispatch]);
+
+    useEffect(() => {
+        const filtered = cryptos.filter(crypto =>
+          crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredCryptos(filtered);
+      }, [cryptos, searchTerm]);
+    
+      const handleSearch = (term: string) => {
+        setSearchTerm(term);
+      };
 
     if (loading) {
         return <div>loading...</div>;
@@ -22,10 +51,13 @@ export const CryptoList = () => {
     }
 
     return (
-        <div>
-            {cryptos.map(crypto => (
-                <div key={crypto.id}>{crypto.name}</div>
-            ))}
-        </div>
+        <>
+        <CryptoSearch onSearch={(term) => handleSearch(term)} />
+            <CryptoContainer>
+                {filteredCryptos.map(crypto => (
+                    <CryptoCard key={crypto.id} crypto={crypto} />
+                ))}
+            </CryptoContainer>
+        </>
     );
 }

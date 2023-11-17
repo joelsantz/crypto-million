@@ -1,4 +1,7 @@
-import { CryptoCurrency } from "../components/CrytoList/utils";
+import { CryptoCurrency } from '@/app/components/utils';
+
+
+
 
 const BASE_URL = ' https://api.coinlore.net/api';
 

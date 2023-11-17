@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { CryptoCurrency } from "../../components/CrytoList/utils";
 import { getCryptos as getCryptosService } from '../../services/cryptoService';
+import { CryptoCurrency } from '@/app/components/utils';
 
 // Define thunk
 export const getCryptos = createAsyncThunk(

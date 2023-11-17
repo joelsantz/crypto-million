@@ -1,4 +1,4 @@
-import { CryptoCurrency } from "../components/CrytoList/utils";
+import { CryptoCurrency } from "../components/utils";
 
 export interface RootState {
     cryptos: {
