@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { CryptoCard } from '@/app/components/CryptoCard';
+import { CryptoCard } from '../../../app/components/CryptoCard/CryptoCard';
 
 
 describe('CryptoCard', () => {
