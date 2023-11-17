@@ -2,6 +2,12 @@ import { CryptoGlobalStats } from '@/app/components/utils';
 import { getGlobalCryptoData } from '@/app/services/cryptoService';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+export const initialState = {
+  data: null as CryptoGlobalStats | null,
+  loading: false,
+  error: null as string | null | undefined,
+};
+
 export const fetchGlobalCryptoData = createAsyncThunk(
   'globalCrypto/fetchGlobalData',
   async () => {
@@ -13,11 +19,7 @@ export const fetchGlobalCryptoData = createAsyncThunk(
 
 export const globalCryptoSlice = createSlice({
   name: 'globalCrypto',
-  initialState: {
-    data: null as CryptoGlobalStats | null,
-    loading: false,
-    error: null as string | null | undefined,
-  },
+  initialState,
   reducers: {
   },
   extraReducers: (builder) => {
