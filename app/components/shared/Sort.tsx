@@ -11,6 +11,10 @@ const SortByPriceContainer = styled.div`
   align-self: flex-start;
   cursor: pointer;
   margin-left: 50px;
+    @media (max-width: 768px) {
+      align-self: center;
+      margin-left: 0;
+  }
 `;
 
 const SortText = styled.span`

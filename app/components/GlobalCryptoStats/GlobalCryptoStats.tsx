@@ -21,9 +21,10 @@ const Card = styled.div`
   margin-top: 20px;
   flex-basis: calc(25% - 20px);
   text-align: center;
+  background-image: linear-gradient(to bottom, #1a1a1a, #161616, #000);
 
   @media (max-width: 768px) {
-    flex-basis: calc(50% - 20px);
+    flex-basis: calc(90% - 20px);
   }
 
   &:hover {

@@ -6,7 +6,7 @@ describe('CryptoSearch', () => {
   it('renders the input field', () => {
     render(<CryptoSearch onSearch={jest.fn()} />);
 
-    expect(screen.getByPlaceholderText(/Search by name.../i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Search by currency name.../i)).toBeInTheDocument();
   });
 
   it('calls the onSearch function when typing', () => {

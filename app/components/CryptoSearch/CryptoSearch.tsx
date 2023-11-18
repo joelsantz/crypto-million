@@ -5,6 +5,10 @@ const SearchContainer = styled.div`
   display: flex;
   justify-content: left;
   margin-top: 40px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   
 `;
 
@@ -35,7 +39,7 @@ export const CryptoSearch: React.FC<CryptoSearchProps> = ({ onSearch }) => {
     <SearchContainer>
       <SearchInput
         type="text"
-        placeholder="Search by name..."
+        placeholder="Search by currency name..."
         value={searchTerm}
         onChange={handleInputChange}
       />
