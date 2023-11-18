@@ -37,12 +37,15 @@ export const CryptoList = () => {
   const { cryptos, loading, error } = useSelector(
     (state: RootState) => state.cryptos
   );
+
+  // Local state for managing filtered cryptos, search terms, pagination, and sorting.
   const [filteredCryptos, setFilteredCryptos] = useState<CryptoCurrency[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(ITEMS_PER_PAGE);
   const [sortOrder, setSortOrder] = useState("");
 
+  // Calculate total pages for pagination based on filtered items.
   const totalPages = Math.ceil(filteredCryptos.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -55,10 +58,12 @@ export const CryptoList = () => {
     setSortOrder(sortOrder === "highest" ? "lowest" : "highest");
   };
 
+  // Effect for fetching cryptos from the Redux store on component mount.
   useEffect(() => {
     dispatch(getCryptos());
   }, [dispatch]);
 
+  // Effect for filtering and sorting cryptos based on search term and sort order.
   useEffect(() => {
     let sortedCryptos = [...cryptos];
 
