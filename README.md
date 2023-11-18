@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Crypto Million 🪙
 
-## Getting Started
+## Overview
+Crypto Million is a dynamic web application for cryptocurrency tracking. It's built with React, Redux, and styled-components, offering an interactive and responsive user interface.
 
-First, run the development server:
+## Features
+- **Crypto Tracking**: Display live cryptocurrency data including prices, market trends, and more.
+- **Advanced Filtering**: Easily search and sort cryptocurrencies based on various criteria.
+- **Responsive Design**: Crafted for an optimal user experience across all devices.
+- **Pagination**: Efficiently navigate through extensive lists of cryptocurrencies.
+- **Sorting**: Organize crypto data by price in ascending or descending order.
+
+## Quick View ⚡️ 
+Deployed on Vercel, let's take a look!
+- [https://crypto-million-seven.vercel.app](https://crypto-million-seven.vercel.app)
+
+## Getting Started 🚀
+Please clone repo, then we need to install dependencies and run the project:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+# next
+npm run build && npm run start
 ```
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Powered by
+- [React](https://react.dev/)
+- [Redux](https://redux.js.org/)
+- [NextJs](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Styled Components](https://styled-components.com/)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## File Structure
+- ```test``` Tests definitions for each component and services.
+- ```app/components``` application components.
+- ```app/services``` definitions for the use of endpoint.
+- ```app/store``` definitions for store and slices.
+  
